@@ -1,6 +1,6 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
+
 function Navigation(props) {
   return (
     <ul>
@@ -12,6 +12,9 @@ function Navigation(props) {
       </li>
       <li>
         <Link to="/contact">Contact</Link>
+      </li>
+      <li>
+        <Link to="/Jeopardy">Jeopardy</Link>
       </li>
     </ul>
   );
