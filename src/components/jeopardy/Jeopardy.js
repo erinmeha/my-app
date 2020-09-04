@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import JeopardyService from "../../jeopardyService";
+import Display from "../display/Display";
+
 class Jeopardy extends Component {
     constructor(props) {
         super(props);
@@ -44,7 +46,7 @@ class Jeopardy extends Component {
     checkAnswer = (event) => {
         event.preventDefault()
         let score = this.state.score
-        if(this.state.data.answer === this.state.formData) {
+        if (this.state.data.answer === this.state.formData) {
             this.setState({
                 score: score += this.state.data.value
             })
@@ -58,7 +60,7 @@ class Jeopardy extends Component {
     handleChange = (event) => {
         let formData = this.state.formData;
         formData[event.target.name] = event.target.value;
-        this.setState({formData});
+        this.setState({ formData });
     }
     handleSubmit = (event) => {
         event.preventDefault();
@@ -68,14 +70,10 @@ class Jeopardy extends Component {
     }
     render() {
         return (
-            <div>
-                <strong>Question: </strong> {this.state.data.question} <br />
-                <strong>Category: </strong> {this.state.data.category.title} <br />
-                <strong>Users Score: </strong> {this.state.score} <br />
-                <strong>Value: </strong> {this.state.data.value} <br />
-                <strong>Answer: </strong> <input type="text"></input>
-                <button onClick={this.checkAnswer}>Enter</button>
-            </div>
+            <Display
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+            />
         );
     }
 }
