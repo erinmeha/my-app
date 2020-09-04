@@ -46,7 +46,7 @@ class Jeopardy extends Component {
     checkAnswer = (event) => {
         event.preventDefault()
         let score = this.state.score
-        if (this.state.data.answer === this.state.formData) {
+        if (this.state.data.answer === document.getElementById('userinput').value) {
             this.setState({
                 score: score += this.state.data.value
             })
@@ -69,11 +69,26 @@ class Jeopardy extends Component {
         })
     }
     render() {
+        if (this.state.data.category === undefined)
+            return (
+                <div>
+                    <h1>Loading ...</h1>
+                </div>
+            )
         return (
+            <div>
             <Display
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
+                category={this.state.data.category}
+                question={this.state.data.question}
+                answer={this.state.data.answer}
+                value={this.state.data.value}
+                score={this.state.score}
+                checkAnswer={this.checkAnswer}
             />
+                <label>Answer:</label>
+                <input id="userinput" type="text" name="answer" />
+                <button onClick={this.checkAnswer}>Enter</button>
+            </div>
         );
     }
 }
